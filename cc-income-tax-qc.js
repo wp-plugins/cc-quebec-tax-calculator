@@ -4,11 +4,11 @@ var $J = jQuery.noConflict();
 $J( document ).ready(function() {
 	// runtime events
 	
-	$J(".income").keydown(function(event) {
+	$J(".qc-income").keydown(function(event) {
 		if(!(isIntegerKey(event))) event.preventDefault();
 	});	
 
-	$J(".income").keyup(function( ) {
+	$J(".qc-income").keyup(function( ) {
 		calculate_income_tax_qc($J(this).closest("aside").attr("id"));
 	});
 
@@ -34,21 +34,21 @@ function calculate_income_tax_qc(id)
 	// if no data entered
 	if (isNaN(income) || income == "") return;
 	
-    // calculate QC provincial taxes 2013
+    // calculate QC provincial taxes 2014
 	ProvincialTax = 0; 
     tmpIncome = income;
-    if (tmpIncome > 100000) { ProvincialTax += (tmpIncome - 100000) * 25.75 / 100; tmpIncome = 100000; }
-    if (tmpIncome > 82190) { ProvincialTax += (tmpIncome - 82190) * 24 / 100; tmpIncome = 82190; }
-    if (tmpIncome > 41095) { ProvincialTax += (tmpIncome - 41095) * 20 / 100; tmpIncome = 41095; }
-    if (tmpIncome > 13994) { ProvincialTax += (tmpIncome - 13994) * 16 / 100; }
+    if (tmpIncome > 100970) { ProvincialTax += (tmpIncome - 100970) * 25.75 / 100; tmpIncome = 100970; }
+    if (tmpIncome > 82985) { ProvincialTax += (tmpIncome - 82985) * 24 / 100; tmpIncome = 82985; }
+    if (tmpIncome > 41495) { ProvincialTax += (tmpIncome - 41495) * 20 / 100; tmpIncome = 41495; }
+    if (tmpIncome > 14131) { ProvincialTax += (tmpIncome - 14131) * 16 / 100; }
 
-    // calculate Canadian federal taxes 2013
+    // calculate Canadian federal taxes 2014
     FederalTax = 0;
     tmpIncome = income;
-    if (tmpIncome > 135054) { FederalTax += (tmpIncome - 135054) * 24.22 / 100; tmpIncome = 135054; }
-    if (tmpIncome > 87123) { FederalTax += (tmpIncome - 87123) * 21.71 / 100; tmpIncome = 87123; }
-    if (tmpIncome > 43561) { FederalTax += (tmpIncome - 43561) * 18.37 / 100; tmpIncome = 43561; }
-    if (tmpIncome > 11038) { FederalTax += (tmpIncome - 11038) * 12.53 / 100; }
+    if (tmpIncome > 136270) { FederalTax += (tmpIncome - 136270) * 24.22 / 100; tmpIncome = 136270; }
+    if (tmpIncome > 87907) { FederalTax += (tmpIncome - 87907) * 21.71 / 100; tmpIncome = 87907; }
+    if (tmpIncome > 43953) { FederalTax += (tmpIncome - 43953) * 18.37 / 100; tmpIncome = 43953; }
+    if (tmpIncome > 11138) { FederalTax += (tmpIncome - 11138) * 12.53 / 100; }
 
     TotalTax = ProvincialTax + FederalTax;
 	AverageRate = TotalTax / income * 100;

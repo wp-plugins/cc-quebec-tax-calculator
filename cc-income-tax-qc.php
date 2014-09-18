@@ -3,13 +3,13 @@
 /*
 Plugin Name: CC Quebec Income Tax Calculator
 Plugin URI: http://incometax.calculatorscanada.ca/income-tax-widgets/
-Description: Quebec Income Tax Calculator 2013
-Version: 0.2013.1
+Description: Quebec Income Tax Calculator 2014
+Version: 0.2014.1
 Author: Calculators Canada
 Author URI: http://calculatorscanada.ca/
 License: GPL2
 
-Copyright 2013 CalculatorsCanada.CA (info@calculatorscanada.ca)
+Copyright 2014 CalculatorsCanada.CA (info@calculatorscanada.ca)
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
@@ -32,7 +32,7 @@ class cc_income_tax_qc extends WP_Widget {
 	function __construct() {
 		$options = array(		
 			'name' => __('CC Quebec Tax Calculator','cctextdomain'), 
-			'description' => __('Quebec Tax Calculator 2013','cctextdomain')
+			'description' => __('Quebec Tax Calculator 2014','cctextdomain')
 		);
 		parent::__construct('cc_income_tax_qc', '', $options);
 	}
@@ -46,7 +46,7 @@ class cc_income_tax_qc extends WP_Widget {
         //print_r('id_base: '.$this->id_base.' ');
 
         $defaults = array(
-            'title' => __('Quebec Tax Calculator 2013', 'cctextdomain'),
+            'title' => __('Quebec Tax Calculator 2014', 'cctextdomain'),
             'bg_color' => '#ffffff',
             'border_color' => '#000000',
             'text_color' => '#000000'
