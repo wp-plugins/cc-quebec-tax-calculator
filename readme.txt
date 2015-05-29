@@ -1,19 +1,19 @@
-=== CC Ontario Income Tax Calculator ===
+=== CC Quebec Income Tax Calculator ===
 Contributors: CalculatorsCanada.ca
 Donate link: http://incometax.calculatorscanada.ca
-Tags: Ontario, Canada, income tax calculator, calculator, sidebar, widget, plugin, financial, taxes
+Tags: Quebec, Canada, income tax calculator, calculator, sidebar, widget, plugin, financial, taxes
 Requires at least: 3.0
 Tested up to: 4.2.2
-Stable tag: 0.2014.2
+Stable tag: 0.2014.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Add a free simple customizable Ontario income tax calculator to your web site. 
+Add a free simple customizable Quebec income tax calculator to your web site. 
 
 == Description ==
 
-This is simple [Ontario tax calculator](http://incometax.calculatorscanada.ca/ontario) calculates income taxes for residents of Ontario province in Canada for 2014 fiscal year. 
-Install ealier version ([v2013.2](https://wordpress.org/plugins/cc-ontario-tax-calculator/developers/)) if you need tax calculator for 2013
+This is simple [Quebec tax calculator](http://incometax.calculatorscanada.ca/quebec) calculates income taxes for residents of Quebec province in Canada for 2014 fiscal year. 
+Install ealier version ([v2013.1](https://wordpress.org/plugins/cc-quebec-tax-calculator/developers/)) if you need tax calculator for 2013
 
 Calculator is very easy customizable: you can change color of background, borders and text to match your web site's theme and change widget title.
 
@@ -40,14 +40,8 @@ Please [contact us](http://calculatorscanada.ca/contact) if you have further que
 
 == Changelog ==
 
-= 0.2014.2 =
-* Fixed minor bug for fiscal year 2014
-
 = 0.2014.1 =
-* Income tax calculator updated for fiscal year 2014
-
-= 0.2013.2 =
-* Fixed minor bug (Undefined variable)
+* Quebec income tax calculator updated for fiscal year 2014
 
 = 0.2013.1 =
 * Initial beta release for fiscal year 2013
