@@ -3,13 +3,13 @@
 /*
 Plugin Name: CC Quebec Income Tax Calculator
 Plugin URI: http://incometax.calculatorscanada.ca/income-tax-widgets/
-Description: Quebec Income Tax Calculator 2014
-Version: 0.2014.1
+Description: Quebec Income Tax Calculator 2015
+Version: 0.2015.1
 Author: Calculators Canada
 Author URI: http://calculatorscanada.ca/
 License: GPL2
 
-Copyright 2014 CalculatorsCanada.CA (info@calculatorscanada.ca)
+Copyright 2014-2015 CalculatorsCanada.CA (info@calculatorscanada.ca)
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
@@ -32,7 +32,7 @@ class cc_income_tax_qc extends WP_Widget {
 	function __construct() {
 		$options = array(		
 			'name' => __('CC Quebec Tax Calculator','cctextdomain'), 
-			'description' => __('Quebec Tax Calculator 2014','cctextdomain')
+			'description' => __('Quebec Tax Calculator 2015','cctextdomain')
 		);
 		parent::__construct('cc_income_tax_qc', '', $options);
 	}
@@ -46,9 +46,9 @@ class cc_income_tax_qc extends WP_Widget {
         //print_r('id_base: '.$this->id_base.' ');
 
         $defaults = array(
-            'title' => __('Quebec Tax Calculator 2014', 'cctextdomain'),
-            'bg_color' => '#ffffff',
-            'border_color' => '#000000',
+            'title' => __('Quebec Tax Calculator 2015', 'cctextdomain'),
+            'bg_color' => '#f8f8f8',
+            'border_color' => '#dddddd',
             'text_color' => '#000000'
         );
 
@@ -106,8 +106,8 @@ class cc_income_tax_qc extends WP_Widget {
 		$instance = $old_instance;
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : $instance['title'];
 
-        $instance['bg_color'] = ( preg_match($hex_color_pattern, $new_instance['bg_color']) ) ? $new_instance['bg_color'] : "#ffffff";
-        $instance['border_color'] = ( preg_match($hex_color_pattern, $new_instance['border_color']) ) ? $new_instance['border_color'] : "#000000";
+        $instance['bg_color'] = ( preg_match($hex_color_pattern, $new_instance['bg_color']) ) ? $new_instance['bg_color'] : "#f8f8f8";
+        $instance['border_color'] = ( preg_match($hex_color_pattern, $new_instance['border_color']) ) ? $new_instance['border_color'] : "#dddddd";
         $instance['text_color'] = ( preg_match($hex_color_pattern, $new_instance['text_color']) ) ? $new_instance['text_color'] : "#000000";
         $instance['allow_cc_urls'] = ($new_instance['allow_cc_urls'] == "on") ? 1 : 0;
 		return $instance;
@@ -134,9 +134,9 @@ add_action('widgets_init', create_function('', 'return register_widget("cc_incom
 
 // load widget style and javascript files
 function cc_income_tax_qc_scripts() {
-	wp_register_style( 'cc-income-tax-qc', plugins_url('/cc-income-tax-qc.css',__FILE__)); 
+	wp_register_style( 'cc-income-tax-qc', plugins_url('/cc-income-tax-qc.css',__FILE__), NULL, '0.2015.1'); 
 	wp_enqueue_style( 'cc-income-tax-qc' );
-    wp_enqueue_script( 'cc-income-tax-qc', plugins_url('/cc-income-tax-qc.js',__FILE__), array('jquery'), '0.1.0', true );
+    wp_enqueue_script( 'cc-income-tax-qc', plugins_url('/cc-income-tax-qc.js',__FILE__), array('jquery'), '0.2015.1', true );
 }
 
 add_action( 'wp_enqueue_scripts', 'cc_income_tax_qc_scripts' );
@@ -150,5 +150,25 @@ function cc_income_tax_qc_admin( $hook_suffix ) {
 
 add_action( 'admin_enqueue_scripts', 'cc_income_tax_qc_admin' );
 
+function cc_income_tax_qc_shortcode($atts, $content=null)
+{
+	$atts = shortcode_atts (
+        array(  'title'=>'Quebec tax calculator',
+                 'dev_credit'=>'1',
+                 'bg_color'=>'#f8f8f8',
+                 'border_color'=>'#dddddd',
+                 'text_color'=>'#000000'
+              ),
+        $atts
+    );
+   if ( $atts['dev_credit'] && !empty($atts['title']))
+		 $atts['title'] = '<a href="http://incometax.calculatorscanada.ca/quebec" target="_blank">' . $atts['title'] . '</a>';		
+    ob_start();
+    load_cc_income_tax_qc_calc('cc_income_tax_qc_shortcode', $atts['title'],  $atts['dev_credit'], $atts['bg_color'], $atts['border_color'], $atts['text_color']);
+    $widget = ob_get_contents();
+    ob_end_clean();
+    return trim($widget);
+}
 
+add_shortcode('cc_income_tax_qc','cc_income_tax_qc_shortcode');
 ?>

@@ -1,21 +1,21 @@
 .CCT-Widget {
-  background-color: #ffffff;
+  background-color: #f8f8f8;
   margin: 0px;
   max-width: 300px;
   min-width: 230px;
   padding: 5px;
-  border: 1px solid #000000;
+  border: 1px solid #dddddd;
   font: normal normal 12px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
 }	
 
 .CCT-Widget input[type=text] {
-  background: #FFFFFF;
+  background: #ffffff;
   clear: none;
   outline:none;
   text-align:left;
   width: 85%;
   padding: 5px;
-  border: #000000 1px solid;
+  border: #dddddd 1px solid;
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
@@ -30,26 +30,26 @@
 	font: normal normal 12px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
 }
 
-.ccm-rowdiv{
+.CCT-rowdiv{
     overflow: hidden; 
     padding:3px;
 }
 
-.ccm-leftdiv{
+.CCT-leftdiv{
     float:left; 
 	padding-top:9px;
 }
 
-.ccm-rightdiv{
+.CCT-rightdiv{
     overflow: hidden;
 }
 
-.ccm-leftresultdiv {
+.CCT-leftresultdiv {
     float:left; 
 	padding-bottom:9px;
 }
 
-.ccm-rightresultdiv{
+.CCT-rightresultdiv{
 	padding-bottom:9px;
     overflow: hidden;
 	min-height: 15px;    
@@ -69,7 +69,7 @@
 }
 
 .CCT-WidgetLine{
-    border-bottom: 1px #000000 solid;
+    border-bottom: 1px #dddddd solid;
     overflow: visible;
     margin: 5px 0 5px 0;
 }

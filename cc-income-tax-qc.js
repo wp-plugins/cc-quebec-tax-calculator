@@ -1,7 +1,8 @@
 var $J = jQuery.noConflict();
 
 
-$J( document ).ready(function() {
+//$J( document ).ready(function() {
+jQuery(document).ready(function ($J) {
 	// runtime events
 	
 	$J(".qc-income").keydown(function(event) {
@@ -9,60 +10,62 @@ $J( document ).ready(function() {
 	});	
 
 	$J(".qc-income").keyup(function( ) {
-		calculate_income_tax_qc($J(this).closest("aside").attr("id"));
+		//calculate_income_tax_qc($J(this).closest("aside").attr("id"));
+        calculate_income_tax_qc(get_id(this.id,"income"));
+
 	});
 
-});
+    function get_id(long_id,fieldname)
+    {
+        return long_id.substr(0, long_id.lastIndexOf(fieldname) - 1);
+    };
 
-function format_id(id,name)
-{
-    
-};
-
-function calculate_income_tax_qc(id)
-{
-    var income_id = '#' + id + '-' + 'income';
-	var income = $J(income_id).val();
+    function calculate_income_tax_qc(id)
+    {
+        var income_id = '#' + id + '-' + 'income';
+	    var income = $J(income_id).val();
+        var currency = '$';
 	
-    // clear output
-	$J('#' + id + '-' + 'ProvincialTax').html("");
-	$J('#' + id + '-' + 'FederalTax').html("");
-	$J('#' + id + '-' + 'TotalTax').html("");
-	$J('#' + id + '-' + 'AverageRate').html("");
-	$J('#' + id + '-' + 'AfterTaxIncome').html("");
+        // clear output
+	    $J('#' + id + '-' + 'ProvincialTax').html("");
+	    $J('#' + id + '-' + 'FederalTax').html("");
+	    $J('#' + id + '-' + 'TotalTax').html("");
+	    $J('#' + id + '-' + 'AverageRate').html("");
+	    $J('#' + id + '-' + 'AfterTaxIncome').html("");
 
-	// if no data entered
-	if (isNaN(income) || income == "") return;
+	    // if no data entered
+	    if (isNaN(income) || income == "") return;
 	
-    // calculate QC provincial taxes 2014
-	ProvincialTax = 0; 
-    tmpIncome = income;
-    if (tmpIncome > 100970) { ProvincialTax += (tmpIncome - 100970) * 25.75 / 100; tmpIncome = 100970; }
-    if (tmpIncome > 82985) { ProvincialTax += (tmpIncome - 82985) * 24 / 100; tmpIncome = 82985; }
-    if (tmpIncome > 41495) { ProvincialTax += (tmpIncome - 41495) * 20 / 100; tmpIncome = 41495; }
-    if (tmpIncome > 14131) { ProvincialTax += (tmpIncome - 14131) * 16 / 100; }
+        // calculate QC provincial taxes 2015
+	    ProvincialTax = 0; 
+        tmpIncome = income;
+        if (tmpIncome > 102040) { ProvincialTax += (tmpIncome - 102040) * 25.75 / 100; tmpIncome = 102040; }
+        if (tmpIncome > 83865) { ProvincialTax += (tmpIncome - 83865) * 24 / 100; tmpIncome = 83865; }
+        if (tmpIncome > 41935) { ProvincialTax += (tmpIncome - 41935) * 20 / 100; tmpIncome = 41935; }
+        if (tmpIncome > 14281) { ProvincialTax += (tmpIncome - 14281) * 16 / 100; }
 
-    // calculate Canadian federal taxes 2014
-    FederalTax = 0;
-    tmpIncome = income;
-    if (tmpIncome > 136270) { FederalTax += (tmpIncome - 136270) * 24.22 / 100; tmpIncome = 136270; }
-    if (tmpIncome > 87907) { FederalTax += (tmpIncome - 87907) * 21.71 / 100; tmpIncome = 87907; }
-    if (tmpIncome > 43953) { FederalTax += (tmpIncome - 43953) * 18.37 / 100; tmpIncome = 43953; }
-    if (tmpIncome > 11138) { FederalTax += (tmpIncome - 11138) * 12.53 / 100; }
+        // calculate Canadian federal taxes 2015
+        FederalTax = 0;
+        tmpIncome = income;
+        if (tmpIncome > 138586) { FederalTax += (tmpIncome - 138586) * 24.22 / 100; tmpIncome = 138586; }
+        if (tmpIncome > 89401) { FederalTax += (tmpIncome - 89401) * 21.71 / 100; tmpIncome = 89401; }
+        if (tmpIncome > 44701) { FederalTax += (tmpIncome - 44701) * 18.37 / 100; tmpIncome = 44701; }
+        if (tmpIncome > 11327) { FederalTax += (tmpIncome - 11327) * 12.53 / 100; }
 
-    TotalTax = ProvincialTax + FederalTax;
-	AverageRate = TotalTax / income * 100;
-	if (isNaN(AverageRate)) AverageRate = 0;
-	AfterTaxIncome = income - TotalTax;
+        TotalTax = ProvincialTax + FederalTax;
+	    AverageRate = TotalTax / income * 100;
+	    if (isNaN(AverageRate)) AverageRate = 0;
+	    AfterTaxIncome = income - TotalTax;
 	
-	$J('#' + id + '-' + 'ProvincialTax').html(round2TwoDecimals(ProvincialTax));
-	$J('#' + id + '-' + 'FederalTax').html(round2TwoDecimals(FederalTax));
-	$J('#' + id + '-' + 'TotalTax').html(round2TwoDecimals(TotalTax));
-	$J('#' + id + '-' + 'AverageRate').html(round2TwoDecimals(AverageRate));
-	$J('#' + id + '-' + 'AfterTaxIncome').html(round2TwoDecimals(AfterTaxIncome));
+        $J('#' + id + '-' + 'ProvincialTax').html(currency + formatNumber(round2TwoDecimals(ProvincialTax)).toString());
+        $J('#' + id + '-' + 'FederalTax').html(currency + formatNumber(round2TwoDecimals(FederalTax)).toString());
+        $J('#' + id + '-' + 'TotalTax').html(currency + formatNumber(round2TwoDecimals(TotalTax)).toString());
+        $J('#' + id + '-' + 'AverageRate').html(round2TwoDecimals(AverageRate).toString() + '%');
+        $J('#' + id + '-' + 'AfterTaxIncome').html(currency + formatNumber(round2TwoDecimals(AfterTaxIncome)).toString());
 	   
-};
+    };
 
+});
 
 function isIntegerKey(evt)	  
       {
@@ -114,5 +117,7 @@ function round2TwoDecimals(number)
 		 };	
  
 
-
+function formatNumber (num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+}
 
